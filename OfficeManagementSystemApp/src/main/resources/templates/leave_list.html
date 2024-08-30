@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>İzin Yönetim</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+
+<div class="container my-2">
+  <h1>İzin Yönetim</h1>
+
+  <a th:href="@{/showNewLeaveForm}" class="btn btn-primary btn-sm mb-3"> İzin Ekle </a>
+
+  <table border="1" class="table table-striped table-responsive-md">
+    <thead>
+    <tr>
+      <th>Personel ID</th>
+      <th>Başlangıç Tarihi</th>
+      <th>Bitiş Tarihi</th>
+      <th>Sebep</th>
+      <th>Talep Durumu</th>
+      <th>Aksiyonlar</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="leave : ${listLeaves}">
+      <td th:text="${leave.employeeId}"></td>
+      <td th:text="${leave.startDate}"></td>
+      <td th:text="${leave.endDate}"></td>
+      <td th:text="${leave.reason}"></td>
+      <td th:text="${leave.status}"></td>
+      <td>
+        <a th:href="@{/showFormForUpdateLeave/{id}(id=${leave.id})}" class="btn btn-primary">Güncelle</a>
+        <a th:href="@{/deleteLeave/{id}(id=${leave.id})}" class="btn btn-danger">Sil</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+
+</html>

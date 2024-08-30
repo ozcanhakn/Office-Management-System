@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Yeni İzin</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container">
+  <h1>İzin Yönetim</h1>
+  <hr>
+  <h2>İzin Talebi</h2>
+
+  <form action="#" th:action="@{/saveLeave}" th:object="${leave}" method="POST">
+    <input type="number" th:field="*{employeeId}" placeholder="Employee ID" class="form-control mb-4 col-4">
+
+    <input type="date" th:field="*{startDate}" class="form-control mb-4 col-4">
+
+    <input type="date" th:field="*{endDate}" class="form-control mb-4 col-4">
+
+    <input type="text" th:field="*{reason}" placeholder="Reason" class="form-control mb-4 col-4">
+
+    <select th:field="*{status}" class="form-control mb-4 col-4">
+      <option value="Pending">Beklemede</option>
+      <option value="Approved">Onaylandı</option>
+      <option value="Rejected">Reddedildi</option>
+    </select>
+
+    <button type="submit" class="btn btn-info col-2"> İzni Kaydet</button>
+  </form>
+
+  <hr>
+
+  <a th:href="@{/leaves}"> İzin Listesine Dön</a>
+</div>
+</body>
+
+</html>

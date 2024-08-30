@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Yeni Bilgilendirme</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+
+<body>
+<div class="container">
+  <h1>Yeni Bilgilendirme</h1>
+  <form action="#" th:action="@{/saveInformation}" th:object="${information}" method="POST">
+    <input type="text" th:field="*{title}" placeholder="Title" class="form-control mb-4 col-4">
+    <textarea th:field="*{content}" placeholder="Content" class="form-control mb-4 col-4"></textarea>
+    <button type="submit" class="btn btn-info col-2"> Kaydet </button>
+  </form>
+  <a th:href="@{/information}"> Bilgilendirme Listesine Dön</a>
+</div>
+</body>
+
+</html>

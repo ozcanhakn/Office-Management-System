@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Görevler Yönetimi</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container my-2">
+  <h1>Görevler Listesi</h1>
+  <a th:href="@{/showNewTaskForm}" class="btn btn-primary btn-sm mb-3">Yeni Görev Ekle</a>
+  <table class="table table-striped table-responsive-md">
+    <thead>
+    <tr>
+      <th>Başlık</th>
+      <th>Açıklama</th>
+      <th>Durum</th>
+      <th>Çalışan</th> <!-- Yeni sütun eklendi -->
+      <th>Aksiyonlar</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="task : ${listTasks}">
+      <td th:text="${task.taskName}"></td>
+      <td th:text="${task.responsibility}"></td>
+      <td th:text="${task.status}"></td>
+      <td>
+        <span th:text="${task.employee != null ? task.employee.firstName + ' ' + task.employee.lastName : 'Atanmış değil'}"></span> <!-- Çalışan bilgisi eklendi -->
+      </td>
+      <td>
+        <a th:href="@{/showFormForUpdateTask/{id}(id=${task.id})}" class="btn btn-primary btn-sm">Güncelle</a>
+        <a th:href="@{/deleteTask/{id}(id=${task.id})}" class="btn btn-danger btn-sm">Sil</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

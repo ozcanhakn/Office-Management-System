@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Doküman Yönetimi</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+
+<body>
+<div class="container my-2">
+  <h1>Doküman Listesi</h1>
+  <a th:href="@{/showNewDocumentForm}" class="btn btn-primary btn-sm mb-3"> Doküman Ekle </a>
+  <table border="1" class="table table-striped table-responsive-md">
+    <thead>
+    <tr>
+      <th>Başlık</th>
+      <th>Açıklama</th>
+      <th>Yüklenme Tarihi</th>
+      <th> Aksiyonlar </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="document : ${listDocuments}">
+      <td th:text="${document.title}"></td>
+      <td th:text="${document.description}"></td>
+      <td th:text="${document.uploadDate}"></td>
+      <td>
+        <a th:href="@{/showFormForUpdateDocument/{id}(id=${document.id})}" class="btn btn-primary">Güncelle</a>
+        <a th:href="@{/deleteDocument/{id}(id=${document.id})}" class="btn btn-danger">Sil</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+
+</html>

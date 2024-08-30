@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Update Task</title>
+</head>
+<body>
+<h1>Update Task</h1>
+<form action="#" th:action="@{/updateTask}" th:object="${task}" method="post">
+  <input type="hidden" th:field="*{id}" />
+
+  <label for="taskName">Task Name:</label>
+  <input type="text" id="taskName" th:field="*{taskName}" required />
+
+  <label for="responsibility">Responsibility:</label>
+  <input type="text" id="responsibility" th:field="*{responsibility}" required />
+
+  <label for="status">Status:</label>
+  <select id="status" th:field="*{status}">
+    <option value="PENDING" th:selected="${task.status == 'PENDING'}">Pending</option>
+    <option value="IN_PROGRESS" th:selected="${task.status == 'IN_PROGRESS'}">In Progress</option>
+    <option value="COMPLETED" th:selected="${task.status == 'COMPLETED'}">Completed</option>
+  </select>
+
+  <!-- Eğer bir employee seçimi yapmak istiyorsanız, aşağıdaki gibi bir dropdown ekleyebilirsiniz -->
+  <label for="employee">Employee:</label>
+  <select id="employee" th:field="*{employee.id}">
+    <option th:each="emp : ${employees}"
+            th:value="${emp.id}"
+            th:text="${emp.firstName} + ' ' + ${emp.lastName}"
+            th:selected="${task.employee != null && task.employee.id == emp.id}"></option>
+  </select>
+
+  <button type="submit">Save</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>İşlemler</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container">
+  <h1>İşlemler Listesi</h1>
+
+  <a th:href="@{/showNewTransactionForm}" class="btn btn-primary btn-sm mb-3"> İşlem Ekle </a>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>Açıklama</th>
+      <th>Miktar</th>
+      <th>Tarih</th>
+      <th>Tür</th>
+      <th>İlgili Hesap</th>
+      <th>Aksiyonlar</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="transaction : ${listTransactionsDTO}">
+      <td th:text="${transaction.description}"></td>
+      <td th:text="${transaction.amount}"></td>
+      <td th:text="${transaction.formattedDate}"></td>
+      <td th:text="${transaction.type}"></td>
+      <td th:text="${transaction.accountName}"></td>
+      <td>
+        <a th:href="@{/showFormForUpdateTransaction/{id}(id=${transaction.id})}" class="btn btn-primary">Güncelle</a>
+        <a th:href="@{/deleteTransaction/{id}(id=${transaction.id})}" class="btn btn-danger">Sil</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+
+</html>

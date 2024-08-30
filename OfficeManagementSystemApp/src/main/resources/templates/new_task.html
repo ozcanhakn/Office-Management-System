@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Yeni Görev</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container my-2">
+  <h1>Yeni Görev Oluştur</h1>
+  <form th:action="@{/saveTask}" th:object="${task}" method="post">
+    <div class="form-group">
+      <label for="taskName">Görev Adı:</label>
+      <input type="text" class="form-control" id="taskName" th:field="*{taskName}" required>
+    </div>
+    <div class="form-group">
+      <label for="responsibility">Sorumluluk:</label>
+      <input type="text" class="form-control" id="responsibility" th:field="*{responsibility}" required>
+    </div>
+    <div class="form-group">
+      <label for="status">Durum:</label>
+      <input type="text" class="form-control" id="status" th:field="*{status}" required>
+    </div>
+    <div class="form-group">
+      <label for="employee">Çalışan Ata:</label>
+      <select class="form-control" id="employee" name="employeeId">
+        <option th:each="employee : ${employees}" th:value="${employee.id}" th:text="${employee.firstName} + ' ' + ${employee.lastName}"></option>
+      </select>
+    </div>
+    <input type="hidden" name="projectId" th:value="${projectId}">
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+  </form>
+</div>
+</body>
+</html>
